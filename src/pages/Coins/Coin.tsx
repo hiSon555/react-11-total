@@ -1,7 +1,8 @@
-import GlobalStyle from "../styles/GlobalStyle.ts";
+import GlobalStyle from "../../styles/GlobalStyle.ts";
 import { useEffect, useState } from "react";
 import { FaArrowDown, FaArrowUp, FaBitcoin } from "react-icons/fa";
 import styled from "styled-components";
+import CoinDetail from "./CoinDetail.tsx";
 
 const Container = styled.div`
     width: 100%;
@@ -23,22 +24,11 @@ const LeftContainer = styled.div`
     margin: 0;
 `;
 
-const RightContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 32px;
-    background-color: #ffffff;
-    border-radius: 18px;
-    margin: 0;
-    flex: 1;
-`;
-
 const CoinTitle = styled.h2`
     display: flex;
     align-items: center;
     gap: 10px;
-`
+`;
 
 const CoinListContainer = styled.div`
     flex: 1;
@@ -51,6 +41,11 @@ const CoinList = styled.ul`
     flex-direction: column;
     border: 1px solid #fefefe;
     padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #f0f4f8;
+    }
 `;
 
 const CoinInfo = styled.li`
@@ -59,7 +54,7 @@ const CoinInfo = styled.li`
 `;
 
 const CoinSymbol = styled.p`
-   color: #a0a0a0;
+    color: #a0a0a0;
 `;
 
 const Decrease = styled.p`
@@ -74,7 +69,7 @@ const Increase = styled.p`
     align-items: center;
 `;
 
-type BCoin = {
+export type BCoin = {
     symbol: string;
     name: string;
     rank: number;
@@ -90,6 +85,8 @@ type BCoinList = {
 
 function Coin() {
     const [coins, setCoins] = useState<BCoin[]>([]);
+
+    const [selectedCoin, setSelectedCoin] = useState<BCoin | null>(null);
 
     const firstThen = (res: Response): Promise<BCoinList> => {
         return res.json();
@@ -123,7 +120,15 @@ function Coin() {
                     </CoinTitle>
                     <CoinListContainer>
                         {coins.map(coin => (
-                            <CoinList key={coin.rank}>
+                            <CoinList
+                                key={coin.rank}
+                                onClick={() => {
+                                    setSelectedCoin(coin);
+                                }}
+                                style={{
+                                    backgroundColor:
+                                        selectedCoin?.rank === coin.rank ? "#dce9ff" : "#f2f2f2",
+                                }}>
                                 <CoinInfo>
                                     <p>{coin.name}</p>
                                     <div>${coin.price_usd}</div>
@@ -150,7 +155,7 @@ function Coin() {
                         ))}
                     </CoinListContainer>
                 </LeftContainer>
-                <RightContainer>상세정보 컴포넌트 자리</RightContainer>
+                <CoinDetail coin={selectedCoin} />
             </Container>
         </>
     );

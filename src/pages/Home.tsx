@@ -12,7 +12,7 @@ const Title = styled.div`
     gap: 8px;
     min-height: 100px;
     padding: 32px;
-    background-color: #ffffff;
+    background-color: #fff;
     border-radius: 18px;
     margin: 0;
     color: #1976d2;

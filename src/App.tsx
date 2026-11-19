@@ -1,6 +1,6 @@
 import GlobalStyle from "./styles/GlobalStyle.ts";
 import Home from "./pages/Home.tsx";
-import Coin from "./pages/Coin.tsx";
+import Coin from "./pages/Coins/Coin.tsx";
 import Todo from "./pages/Todo.tsx";
 import Movie from "./pages/Movie.tsx";
 import Book from "./pages/Book.tsx";
