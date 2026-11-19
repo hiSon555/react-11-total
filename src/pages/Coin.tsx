@@ -101,7 +101,7 @@ function Coin() {
                                         </CoinInfo>
                                         <CoinInfo>
                                             <p>블라블라</p>
-                                            <div>increase : decrease &darr; : &uarr; </div>
+                                            <div>increase :1 decrease &darr; : &uarr; </div>
                                         </CoinInfo>
                                     </CoinList>
                                 );
