@@ -3,11 +3,11 @@ import Home from "./pages/Home.tsx";
 import Coin from "./pages/Coin.tsx";
 import Todo from "./pages/Todo.tsx";
 import Movie from "./pages/Movie.tsx";
-import Rocket from "./pages/Rocket.tsx";
 import Book from "./pages/Book.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/Header.tsx";
 import styled from "styled-components";
+import Product from "./pages/Product.tsx";
 
 const Wrap = styled.div`
     min-height: 100dvh;
@@ -27,7 +27,7 @@ function App() {
                         <Route path={"/todo"} element={<Todo />}></Route>
                         <Route path={"/coin"} element={<Coin />}></Route>
                         <Route path={"/movie"} element={<Movie />}></Route>
-                        <Route path={"/rocket"} element={<Rocket />}></Route>
+                        <Route path={"/product"} element={<Product />}></Route>
                         <Route path={"/book"} element={<Book />}></Route>
                     </Routes>
                 </Wrap>

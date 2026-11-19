@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router";
+import { FaRocket } from "react-icons/fa";
 
 const Head = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 64px;
-    background-color: #f4f4f4;
+    background-color: white;
 `;
 
 const Nav = styled.nav`
@@ -29,13 +30,17 @@ const NavRight = styled.div`
 function Header() {
     return (
         <Head>
-            <Logo>My Universe{/* 누르면 홈"/"으로 가는 기능 넣을 것 */}</Logo>
+            <Logo>
+                <Link to={"/"}>
+                    {<FaRocket />} My Universe
+                </Link>
+            </Logo>
             <Nav>
                 <Link to={"/"}>Home</Link>
                 <Link to={"/Todo"}>할 일</Link>
-                <Link to={"/Coin"}>COin</Link>
+                <Link to={"/Coin"}>Coin</Link>
                 <Link to={"/Movie"}>Movie</Link>
-                <Link to={"/Rocket"}>Rocket</Link>
+                <Link to={"/product"}>Product</Link>
                 <Link to={"/Book"}>Book</Link>
             </Nav>
             <NavRight>
