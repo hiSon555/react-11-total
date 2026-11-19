@@ -1,6 +1,6 @@
 import GlobalStyle from "../styles/GlobalStyle.ts";
 import { useEffect, useState } from "react";
-import { FaBitcoin } from "react-icons/fa";
+import { FaArrowDown, FaArrowUp, FaBitcoin } from "react-icons/fa";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -34,6 +34,12 @@ const RightContainer = styled.div`
     flex: 1;
 `;
 
+const CoinTitle = styled.h2`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+`
+
 const CoinListContainer = styled.div`
     flex: 1;
     min-height: 0;
@@ -47,29 +53,54 @@ const CoinList = styled.ul`
     padding: 10px;
 `;
 
-const CoinInfo = styled.div`
+const CoinInfo = styled.li`
     display: flex;
     justify-content: space-between;
-`
+`;
+
+const CoinSymbol = styled.p`
+   color: #a0a0a0;
+`;
+
+const Decrease = styled.p`
+    color: red;
+    display: flex;
+    align-items: center;
+`;
+
+const Increase = styled.p`
+    color: green;
+    display: flex;
+    align-items: center;
+`;
 
 type BCoin = {
-    market: string;
-    english_name: string;
+    symbol: string;
+    name: string;
+    rank: number;
+    price_usd: string;
+    market_cap_usd: string;
+    volume24: number;
+    percent_change_24h: string;
+};
+
+type BCoinList = {
+    data: BCoin[];
 };
 
 function Coin() {
     const [coins, setCoins] = useState<BCoin[]>([]);
 
-    const firstThen = (response: Response): Promise<BCoin[]> => {
-        return response.json();
+    const firstThen = (res: Response): Promise<BCoinList> => {
+        return res.json();
     };
 
-    const secondThen = (json: BCoin[]) => {
-        setCoins(json);
+    const secondThen = (json: BCoinList) => {
+        setCoins(json.data.filter(coin => coin.rank <= 50));
     };
 
     useEffect(() => {
-        fetch("https://api.upbit.com/v1/market/all") // 조회해야할 API 주소 어딘지 몰라서 이전 프로젝트에서 목록만 가져옴
+        fetch("https://api.coinlore.net/api/tickers/?start=0&limit=50") // 조회해야할 API 주소 어딘지 몰라서 이전 프로젝트에서 목록만 가져옴
             .then(firstThen)
             .then(secondThen)
             .catch((error: unknown) => {
@@ -86,35 +117,40 @@ function Coin() {
             <GlobalStyle />
             <Container>
                 <LeftContainer>
-                    <h2>
-                        <FaBitcoin /> Top 50 Coins
-                    </h2>
+                    <CoinTitle>
+                        <FaBitcoin />
+                        <p>Top 50 Coins</p>
+                    </CoinTitle>
                     <CoinListContainer>
-                        {coins
-                            .filter((_, index) => index < 50)
-                            .map((coin, index) => {
-                                return (
-                                    <CoinList key={index}>
-                                        <CoinInfo>
-                                            <p>{coin.english_name}</p>
-                                            <div> hi </div>
-                                        </CoinInfo>
-                                        <CoinInfo>
-                                            <p>블라블라</p>
-                                            <div>increase :1 decrease &darr; : &uarr; </div>
-                                        </CoinInfo>
-                                    </CoinList>
-                                );
-                            })}
+                        {coins.map(coin => (
+                            <CoinList key={coin.rank}>
+                                <CoinInfo>
+                                    <p>{coin.name}</p>
+                                    <div>${coin.price_usd}</div>
+                                </CoinInfo>
+                                <CoinInfo>
+                                    <CoinSymbol>{coin.symbol}</CoinSymbol>
+                                    <div>
+                                        {Number(coin.percent_change_24h) < 0 ? (
+                                            <Decrease>
+                                                <FaArrowDown />
+                                                {coin.percent_change_24h}%
+                                            </Decrease>
+                                        ) : Number(coin.percent_change_24h) > 0 ? (
+                                            <Increase>
+                                                <FaArrowUp />
+                                                {coin.percent_change_24h}%
+                                            </Increase>
+                                        ) : (
+                                            "-"
+                                        )}
+                                    </div>
+                                </CoinInfo>
+                            </CoinList>
+                        ))}
                     </CoinListContainer>
                 </LeftContainer>
-                <RightContainer>
-                    상세정보 컴포넌트 자리
-                    {/*
-                    https://api.coinlore.net/api/tickers/
-                    여기서 따오는 게 맞나
-                    */}
-                </RightContainer>
+                <RightContainer>상세정보 컴포넌트 자리</RightContainer>
             </Container>
         </>
     );
