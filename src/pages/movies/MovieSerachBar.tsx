@@ -1,5 +1,12 @@
 import { useNavigate } from "react-router";
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
+import { AddButton, Input } from "../../styles/Submit.ts";
+import styled from "styled-components";
+
+const Form = styled.form`
+    display: flex;
+    gap: 12px;
+`;
 
 function MovieSearchBar({ keyword }: { keyword: string }) {
     const navigate = useNavigate();
@@ -16,10 +23,10 @@ function MovieSearchBar({ keyword }: { keyword: string }) {
     };
 
     return (
-        <form onSubmit={onSubmitHandler}>
-            <input onChange={onChangeHandler} value={input} />
-            <button>Search</button>
-        </form>
+        <Form onSubmit={onSubmitHandler}>
+            <Input onChange={onChangeHandler} value={input} />
+            <AddButton>Search</AddButton>
+        </Form>
     );
 }
 

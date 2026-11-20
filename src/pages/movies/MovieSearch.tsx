@@ -1,6 +1,106 @@
 import { Link, useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
 import MovieSearchBar from "./MovieSerachBar.tsx";
+import styled from "styled-components";
+
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+`;
+
+const TopCard = styled.section`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 18px;
+`;
+
+const TopHead = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    h2 {
+        font-size: 18px;
+        color: #1976d2;
+    }
+
+    p {
+        font-size: 12px;
+        color: #a0a0a0;
+    }
+`;
+
+const BottomCard = styled.section`
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 18px;
+`;
+
+const Message = styled.p`
+    padding: 24px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #a0a0a0;
+`;
+
+const BottomWrap = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+`;
+
+const MovieCard = styled(Link)`
+    flex: 0 0 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    background-color: #fff;
+    border: 1px solid #e7e9ec;
+    border-radius: 18px;
+    transition: all 0.2s;
+
+    &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        border-color: #1976d2;
+    }
+`;
+
+const MoviePoster = styled.img`
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #f4f6f8;
+`;
+
+const MovieNoCover = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    background-color: #f4f6f8;
+    color: #a0a0a0;
+    font-size: 12px;
+`;
+
+const MovieTitle = styled.div`
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+`;
+
+const MovieYear = styled.div`
+    font-size: 12px;
+    color: #a0a0a0;
+`;
 
 type MDescription = {
     Title: string;
@@ -26,8 +126,8 @@ function MovieSearch() {
 
     useEffect(() => {
         if (!keyword) return;
-        setLoading(true);
         // eslint-disable-next-line react-hooks/set-state-in-effect
+        setLoading(true);
         setList([]);
         setError("");
 
@@ -43,30 +143,37 @@ function MovieSearch() {
     }, [keyword]);
 
     return (
-        <div>
-            <h2>검색 키워드 : {keyword}</h2>
+        <Container>
+            <TopCard>
+                <TopHead>
+                    <h2>
+                        Search Keyword : <span style={{ color: "black" }}>{keyword}</span>
+                    </h2>
+                </TopHead>
+                <MovieSearchBar keyword={keyword ?? ""} />
+            </TopCard>
 
-            <MovieSearchBar keyword={keyword ?? ""} />
-
-            {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-
-            <div>
-                {Array.isArray(list)
-                    ? list.map(movie => (
-                          <Link to={`/movie/detail/${movie.imdbID}`}>
-                              {movie.Poster ? (
-                                  <img src={movie.Poster} alt={movie.Title} />
-                              ) : (
-                                  <div>No cover</div>
-                              )}
-                              <div>{movie.Title}</div>
-                              <div>{movie.Year}</div>
-                          </Link>
-                      ))
-                    : "검색 결과가 없습니다."}
-            </div>
-        </div>
+            <BottomCard>
+                {!keyword &&<Message>아직 검색한 영화가 없어요</Message>}
+                {loading && <Message>Loading...</Message>}
+                {error && <Message>{error}</Message>}
+                <BottomWrap>
+                    {Array.isArray(list)
+                        ? list.map(movie => (
+                              <MovieCard to={`/movie/detail/${movie.imdbID}`}>
+                                  {movie.Poster ? (
+                                      <MoviePoster src={movie.Poster} alt={movie.Title} />
+                                  ) : (
+                                      <MovieNoCover>No cover</MovieNoCover>
+                                  )}
+                                  <MovieTitle>{movie.Title}</MovieTitle>
+                                  <MovieYear>{movie.Year}</MovieYear>
+                              </MovieCard>
+                          ))
+                        : "검색 결과가 없습니다."}
+                </BottomWrap>
+            </BottomCard>
+        </Container>
     );
 }
 

@@ -1,27 +1,9 @@
 import { Card, CardIcon, CardText } from "../styles/Card.ts";
-import { PageContainer } from "../styles/Container.ts";
+import { PageContainer, Title } from "../styles/Container.ts";
 import styled from "styled-components";
 import { Link } from "react-router";
 import { FaBitcoin, FaBook, FaCheckSquare, FaClipboardList } from "react-icons/fa";
 import { MdOutlineLocalMovies, MdOutlineProductionQuantityLimits } from "react-icons/md";
-
-const Title = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 8px;
-    min-height: 100px;
-    padding: 32px;
-    background-color: #fff;
-    border-radius: 18px;
-    margin: 0;
-    color: #1976d2;
-
-    p {
-        font-size: 12px;
-        color: #a0a0a0;
-    }
-`;
 
 const Grid = styled.div`
     display: grid;

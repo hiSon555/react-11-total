@@ -10,3 +10,21 @@ export const PageContainer = styled.main`
     box-sizing: border-box;
     gap : 20px
 `;
+
+export const Title = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    min-height: 100px;
+    padding: 32px;
+    background-color: #fff;
+    border-radius: 18px;
+    margin: 0;
+    color: #1976d2;
+
+    p {
+        font-size: 12px;
+        color: #a0a0a0;
+    }
+`;

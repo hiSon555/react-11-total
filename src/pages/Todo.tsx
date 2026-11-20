@@ -2,6 +2,7 @@ import { PageContainer } from "../styles/Container.ts";
 import styled from "styled-components";
 import { type ChangeEvent, type SubmitEvent, useState } from "react";
 import { FaCheck, FaTrashAlt } from "react-icons/fa";
+import { AddButton, Input } from "../styles/Submit.ts";
 
 const Container = styled.div`
     max-width: 300px;
@@ -25,19 +26,7 @@ const InputCard = styled.div`
     border-radius: 18px;
 `
 
-const AddButton = styled.button`
-    background: #1976d2;
-    border-radius: 8px;
-    border: 8px;
-    padding: 10px;
-    color: white;
-    cursor: pointer;
-    transition: 0.3s;
 
-    &:hover {
-        background-color: rgb(0 64 126);
-    }
-`;
 
 const CheckButton = styled.button`
     width: 36px;
@@ -72,13 +61,7 @@ const DeletedButton = styled.button`
 }
 `
 
-const Input = styled.input`
-    background-color: #e7e9ec;
-    border-radius: 8px;
-    border: none;
-    padding: 10px;
-    outline: none;
-`
+
 
 const List = styled.ul`
     display: flex;
