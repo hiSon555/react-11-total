@@ -8,7 +8,7 @@ export const Card = styled.div`
     justify-content: center;
     gap: 20px;
     padding: 24px;
-    background-color: #ffffff;
+    background-color: #fff;
     border: 1px solid #e7e9ec;
     border-radius: 18px;
     cursor: pointer;

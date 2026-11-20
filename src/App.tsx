@@ -10,6 +10,7 @@ import styled from "styled-components";
 import Product from "./pages/product/Product.tsx";
 import MovieDetail from "./pages/movies/MovieDetail.tsx";
 import ProductDetail from "./pages/product/ProductDetail.tsx";
+import BookDetail from "./pages/books/BookDetail.tsx";
 
 const Wrap = styled.div`
     min-height: 100dvh;
@@ -34,6 +35,9 @@ function App() {
                         <Route path={"/product"} element={<Product />} />
                         <Route path={"/product/detail/:id"} element={<ProductDetail />} />
                         <Route path={"/book"} element={<Book />} />
+                        <Route path={"/book/search"} element={<Book />} />
+                        <Route path={"/book/detail/:id"} element={<BookDetail />} />
+
                     </Routes>
                 </Wrap>
             </BrowserRouter>

@@ -1,15 +1,10 @@
+import BookSearch from "./BookSearch.tsx";
+
 function Book() {
     return (
-        <>
-            <>
-                <>Search Books(상단)</>
-                <>Search bar</>
-            </>
-            <>
-                book searching list
-                <>book detail</>
-            </>
-        </>
+        <div>
+            <BookSearch />
+        </div>
     );
 }
 
