@@ -85,8 +85,8 @@ type BCoinList = {
 
 function Coin() {
     const [coins, setCoins] = useState<BCoin[]>([]);
-
     const [selectedCoin, setSelectedCoin] = useState<BCoin | null>(null);
+    const [loading, setLoading] = useState(true);
 
     const firstThen = (res: Response): Promise<BCoinList> => {
         return res.json();
@@ -97,7 +97,7 @@ function Coin() {
     };
 
     useEffect(() => {
-        fetch("https://api.coinlore.net/api/tickers/?start=0&limit=50") // 조회해야할 API 주소 어딘지 몰라서 이전 프로젝트에서 목록만 가져옴
+        fetch("https://api.coinlore.net/api/tickers/?start=0&limit=50")
             .then(firstThen)
             .then(secondThen)
             .catch((error: unknown) => {
@@ -106,6 +106,9 @@ function Coin() {
                 } else {
                     console.log("알 수 없는 에러가 발생되었습니다" + error);
                 }
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }, []);
 
@@ -119,7 +122,10 @@ function Coin() {
                         <p>Top 50 Coins</p>
                     </CoinTitle>
                     <CoinListContainer>
-                        {coins.map(coin => (
+                        {loading ? (
+                            <p>코인 목록을 불러오는 중입니다...</p>
+                            ) : (
+                        coins.map(coin => (
                             <CoinList
                                 key={coin.rank}
                                 onClick={() => {
@@ -152,7 +158,7 @@ function Coin() {
                                     </div>
                                 </CoinInfo>
                             </CoinList>
-                        ))}
+                        )) )}
                     </CoinListContainer>
                 </LeftContainer>
                 <CoinDetail coin={selectedCoin} />

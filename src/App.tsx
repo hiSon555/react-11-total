@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/Header.tsx";
 import styled from "styled-components";
 import Product from "./pages/Product.tsx";
+import MovieSearch from "./pages/movies/MovieSearch.tsx";
 
 const Wrap = styled.div`
     min-height: 100dvh;
@@ -23,12 +24,13 @@ function App() {
                 <Wrap>
                     <Header />
                     <Routes>
-                        <Route path={"/"} element={<Home />}></Route>
-                        <Route path={"/todo"} element={<Todo />}></Route>
-                        <Route path={"/coin"} element={<Coin />}></Route>
-                        <Route path={"/movie"} element={<Movie />}></Route>
-                        <Route path={"/product"} element={<Product />}></Route>
-                        <Route path={"/book"} element={<Book />}></Route>
+                        <Route path={"/"} element={<Home />} />
+                        <Route path={"/todo"} element={<Todo />} />
+                        <Route path={"/coin"} element={<Coin />} />
+                        <Route path={"/movie"} element={<Movie />} />
+                        <Route path={"/movie/search"} element={<MovieSearch />} />
+                        <Route path={"/product"} element={<Product />} />
+                        <Route path={"/book"} element={<Book />} />
                     </Routes>
                 </Wrap>
             </BrowserRouter>
