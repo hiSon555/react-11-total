@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router";
-import { FaRocket } from "react-icons/fa";
+import {
+    FaBitcoin,
+    FaBook,
+    FaCheckSquare,
+    FaHome,
+    FaRocket,
+} from "react-icons/fa";
+import { MdOutlineLocalMovies, MdOutlineProductionQuantityLimits } from "react-icons/md";
 
 const Head = styled.header`
     display: flex;
@@ -8,6 +15,7 @@ const Head = styled.header`
     align-items: center;
     height: 64px;
     background-color: white;
+    margin: 0 10px
 `;
 
 const Nav = styled.nav`
@@ -27,21 +35,45 @@ const NavRight = styled.div`
     align-items: center;
 `;
 
+const HeaderLink = styled(Link)`
+    display: flex;
+    align-items: center;
+    gap: 4px;
+`;
+
 function Header() {
     return (
         <Head>
             <Logo>
-                <Link to={"/"}>
-                    {<FaRocket />} My Universe
-                </Link>
+                <HeaderLink to={"/"}>
+                    {<FaRocket />}
+                    <p>My Universe</p>
+                </HeaderLink>
             </Logo>
             <Nav>
-                <Link to={"/"}>Home</Link>
-                <Link to={"/Todo"}>할 일</Link>
-                <Link to={"/Coin"}>Coin</Link>
-                <Link to={"/Movie"}>Movie</Link>
-                <Link to={"/product"}>Product</Link>
-                <Link to={"/Book"}>Book</Link>
+                <HeaderLink to={"/"}>
+                    <FaHome />
+                    <p>Home</p>
+                </HeaderLink>
+                <HeaderLink to={"/Todo"}>
+                    <FaCheckSquare /> Todo
+                </HeaderLink>
+                <HeaderLink to={"/Coin"}>
+                    <FaBitcoin />
+                    <p>Coin</p>
+                </HeaderLink>
+                <HeaderLink to={"/Movie"}>
+                    <MdOutlineLocalMovies />
+                    <p>Movie</p>
+                </HeaderLink>
+                <HeaderLink to={"/product"}>
+                    <MdOutlineProductionQuantityLimits />
+                    <p>Product</p>
+                </HeaderLink>
+                <HeaderLink to={"/Book"}>
+                    <FaBook />
+                    <p>Book</p>
+                </HeaderLink>
             </Nav>
             <NavRight>
                 <button>테마토글{/* 라이트/다크모드 */}</button>

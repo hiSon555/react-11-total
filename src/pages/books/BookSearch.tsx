@@ -1,4 +1,4 @@
-import { PageContainer, Wrap } from "../../styles/Container.ts";
+import { Wrap } from "../../styles/Container.ts";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useSearchParams } from "react-router";
@@ -127,7 +127,6 @@ function BookSearch() {
             : "";
 
     return (
-        <PageContainer>
             <Container>
                 <TopCard>
                     <h2>
@@ -160,7 +159,6 @@ function BookSearch() {
                     )}
                 </NormalCard>
             </Container>
-        </PageContainer>
     );
 }
 
