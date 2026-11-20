@@ -115,37 +115,39 @@ function MovieSearch() {
     }, [keyword]);
 
     return (
-        <Container>
-            <TopCard>
-                <TopHead>
-                    <h2>
-                        Search Keyword : <span style={{ color: "black" }}>{keyword}</span>
-                    </h2>
-                </TopHead>
-                <MovieSearchBar keyword={keyword ?? ""} />
-            </TopCard>
+        <div>
+            <Container>
+                <TopCard>
+                    <TopHead>
+                        <h2>
+                            Search Keyword : <span style={{ color: "black" }}>{keyword}</span>
+                        </h2>
+                    </TopHead>
+                    <MovieSearchBar keyword={keyword ?? ""} />
+                </TopCard>
 
-            <BottomCard>
-                {!keyword &&<Message>아직 검색한 영화가 없어요</Message>}
-                {loading && <Message>Loading...</Message>}
-                {error && <Message>{error}</Message>}
-                <Wrap>
-                    {Array.isArray(list)
-                        ? list.map(movie => (
-                              <HoverCard to={`/movie/detail/${movie.imdbID}`}>
-                                  {movie.Poster ? (
-                                      <MoviePoster src={movie.Poster} alt={movie.Title} />
-                                  ) : (
-                                      <MovieNoCover>No cover</MovieNoCover>
-                                  )}
-                                  <MovieTitle>{movie.Title}</MovieTitle>
-                                  <MovieYear>{movie.Year}</MovieYear>
-                              </HoverCard>
-                          ))
-                        : "검색 결과가 없습니다."}
-                </Wrap>
-            </BottomCard>
-        </Container>
+                <BottomCard>
+                    {!keyword && <Message>아직 검색한 영화가 없어요</Message>}
+                    {loading && <Message>Loading...</Message>}
+                    {error && <Message>{error}</Message>}
+                    <Wrap>
+                        {Array.isArray(list)
+                            ? list.map(movie => (
+                                  <HoverCard to={`/movie/detail/${movie.imdbID}`}>
+                                      {movie.Poster ? (
+                                          <MoviePoster src={movie.Poster} alt={movie.Title} />
+                                      ) : (
+                                          <MovieNoCover>No cover</MovieNoCover>
+                                      )}
+                                      <MovieTitle>{movie.Title}</MovieTitle>
+                                      <MovieYear>{movie.Year}</MovieYear>
+                                  </HoverCard>
+                              ))
+                            : "검색 결과가 없습니다."}
+                    </Wrap>
+                </BottomCard>
+            </Container>
+        </div>
     );
 }
 

@@ -4,7 +4,7 @@ import { NormalCard } from "../../styles/Card.ts";
 import { PageContainer } from "../../styles/Container.ts";
 import { useEffect, useState } from "react";
 import type { ProductDetails } from "./Product.tsx";
-import { Message } from "../movies/MovieSearch.tsx";
+import { Message } from "../../styles/Submit.ts";
 
 const Container = styled.div`
     flex: 1;

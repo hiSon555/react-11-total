@@ -1,8 +1,8 @@
-import { PageContainer, Title } from "../../styles/Container.ts";
-import { Message, Wrap } from "../movies/MovieSearch.tsx";
+import { PageContainer, Title, Wrap } from "../../styles/Container.ts";
 import { HoverCard, NormalCard } from "../../styles/Card.ts";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { Message } from "../../styles/Submit.ts";
 
 const Container = styled.div`
     flex: 1;

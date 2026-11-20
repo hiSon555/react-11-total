@@ -3,12 +3,11 @@ import Home from "./pages/Home.tsx";
 import Coin from "./pages/Coins/Coin.tsx";
 import Todo from "./pages/Todo.tsx";
 import Movie from "./pages/movies/Movie.tsx";
-import Book from "./pages/Book.tsx";
+import Book from "./pages/books/Book.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/Header.tsx";
 import styled from "styled-components";
 import Product from "./pages/product/Product.tsx";
-import MovieSearch from "./pages/movies/MovieSearch.tsx";
 import MovieDetail from "./pages/movies/MovieDetail.tsx";
 import ProductDetail from "./pages/product/ProductDetail.tsx";
 
@@ -30,7 +29,7 @@ function App() {
                         <Route path={"/todo"} element={<Todo />} />
                         <Route path={"/coin"} element={<Coin />} />
                         <Route path={"/movie"} element={<Movie />} />
-                        <Route path={"/movie/search"} element={<MovieSearch />} />
+                        <Route path={"/movie/search"} element={<Movie />} />
                         <Route path={"/movie/detail/:imdbID"} element={<MovieDetail />} />
                         <Route path={"/product"} element={<Product />} />
                         <Route path={"/product/detail/:id"} element={<ProductDetail />} />
