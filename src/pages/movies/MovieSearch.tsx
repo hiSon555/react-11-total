@@ -13,19 +13,20 @@ type MList = {
     Search: MDescription[];
 };
 
+export const MAPI_KEY = import.meta.env.VITE_OMDb_API_KEY;
+
 function MovieSearch() {
     const [searchParams] = useSearchParams();
 
     const keyword = searchParams.get("keyword");
 
     const [list, setList] = useState<MDescription[]>([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-
-    const MAPI_KEY = import.meta.env.VITE_OMDb_API_KEY;
 
     useEffect(() => {
         if (!keyword) return;
+        setLoading(true);
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setList([]);
         setError("");
@@ -53,7 +54,7 @@ function MovieSearch() {
             <div>
                 {Array.isArray(list)
                     ? list.map(movie => (
-                          <Link to={`/moviedetail/${movie.imdbID}`}>
+                          <Link to={`/movie/detail/${movie.imdbID}`}>
                               {movie.Poster ? (
                                   <img src={movie.Poster} alt={movie.Title} />
                               ) : (

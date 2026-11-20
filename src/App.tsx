@@ -9,6 +9,7 @@ import Header from "./components/Header.tsx";
 import styled from "styled-components";
 import Product from "./pages/Product.tsx";
 import MovieSearch from "./pages/movies/MovieSearch.tsx";
+import MovieDetail from "./pages/movies/MovieDetail.tsx";
 
 const Wrap = styled.div`
     min-height: 100dvh;
@@ -29,6 +30,7 @@ function App() {
                         <Route path={"/coin"} element={<Coin />} />
                         <Route path={"/movie"} element={<Movie />} />
                         <Route path={"/movie/search"} element={<MovieSearch />} />
+                        <Route path={"/movie/detail/:imdbID"} element={<MovieDetail />} />
                         <Route path={"/product"} element={<Product />} />
                         <Route path={"/book"} element={<Book />} />
                     </Routes>
