@@ -28,6 +28,7 @@ const CoinTitle = styled.h2`
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #1976d2;
 `;
 
 const CoinListContainer = styled.div`

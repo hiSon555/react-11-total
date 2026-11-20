@@ -7,9 +7,10 @@ import Book from "./pages/Book.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/Header.tsx";
 import styled from "styled-components";
-import Product from "./pages/Product.tsx";
+import Product from "./pages/product/Product.tsx";
 import MovieSearch from "./pages/movies/MovieSearch.tsx";
 import MovieDetail from "./pages/movies/MovieDetail.tsx";
+import ProductDetail from "./pages/product/ProductDetail.tsx";
 
 const Wrap = styled.div`
     min-height: 100dvh;
@@ -32,6 +33,7 @@ function App() {
                         <Route path={"/movie/search"} element={<MovieSearch />} />
                         <Route path={"/movie/detail/:imdbID"} element={<MovieDetail />} />
                         <Route path={"/product"} element={<Product />} />
+                        <Route path={"/product/detail/:id"} element={<ProductDetail />} />
                         <Route path={"/book"} element={<Book />} />
                     </Routes>
                 </Wrap>

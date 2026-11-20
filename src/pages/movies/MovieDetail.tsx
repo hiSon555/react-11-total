@@ -3,38 +3,14 @@ import { useNavigate, useParams } from "react-router";
 import { MAPI_KEY } from "./MovieSearch.tsx";
 import { PageContainer } from "../../styles/Container.ts";
 import styled from "styled-components";
+import { BackButton } from "../../styles/Submit.ts";
+import { NormalCard } from "../../styles/Card.ts";
 
 const Container = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
-`;
-
-const TopBackButton = styled.button`
-    align-self: flex-start;
-    padding: 8px 16px;
-    border: 1px solid #e7e9ec;
-    border-radius: 8px;
-    background-color: #fff;
-    color: #1976d2;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-bottom: 20px;
-
-    &:hover {
-        background-color: #f4f6f8;
-        border-color: #1976d2;
-    }
-`;
-
-const Card = styled.div`
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 32px;
-    background-color: #fff;
-    border-radius: 18px;
 `;
 
 const PosterBox = styled.div`
@@ -112,13 +88,13 @@ function MovieDetail() {
     return (
         <PageContainer>
             <Container>
-                <Card>
-                    <TopBackButton
+                <NormalCard>
+                    <BackButton
                         onClick={() => {
                             navigate(-1);
                         }}>
                         &larr; Back
-                    </TopBackButton>
+                    </BackButton>
                     <PosterBox>
                         <Poster src={movie.Poster} alt={movie.Title} />
                     </PosterBox>
@@ -141,7 +117,7 @@ function MovieDetail() {
                             <Plot dangerouslySetInnerHTML={{ __html: movie.Plot }}></Plot>
                         </div>
                     </Info>
-                </Card>
+                </NormalCard>
             </Container>
         </PageContainer>
     );

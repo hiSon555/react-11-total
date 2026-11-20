@@ -1,7 +1,10 @@
-import { Link, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import { useEffect, useState } from "react";
 import MovieSearchBar from "./MovieSerachBar.tsx";
 import styled from "styled-components";
+import { HoverCard } from "../../styles/Card.ts";
+import { Message } from "../../styles/Submit.ts";
+import { Wrap } from "../../styles/Container.ts";
 
 const Container = styled.div`
     display: flex;
@@ -38,37 +41,6 @@ const BottomCard = styled.section`
     padding: 32px;
     background-color: #fff;
     border-radius: 18px;
-`;
-
-const Message = styled.p`
-    padding: 24px 0;
-    text-align: center;
-    font-size: 14px;
-    color: #a0a0a0;
-`;
-
-const BottomWrap = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-`;
-
-const MovieCard = styled(Link)`
-    flex: 0 0 180px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 12px;
-    background-color: #fff;
-    border: 1px solid #e7e9ec;
-    border-radius: 18px;
-    transition: all 0.2s;
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-        border-color: #1976d2;
-    }
 `;
 
 const MoviePoster = styled.img`
@@ -157,10 +129,10 @@ function MovieSearch() {
                 {!keyword &&<Message>아직 검색한 영화가 없어요</Message>}
                 {loading && <Message>Loading...</Message>}
                 {error && <Message>{error}</Message>}
-                <BottomWrap>
+                <Wrap>
                     {Array.isArray(list)
                         ? list.map(movie => (
-                              <MovieCard to={`/movie/detail/${movie.imdbID}`}>
+                              <HoverCard to={`/movie/detail/${movie.imdbID}`}>
                                   {movie.Poster ? (
                                       <MoviePoster src={movie.Poster} alt={movie.Title} />
                                   ) : (
@@ -168,10 +140,10 @@ function MovieSearch() {
                                   )}
                                   <MovieTitle>{movie.Title}</MovieTitle>
                                   <MovieYear>{movie.Year}</MovieYear>
-                              </MovieCard>
+                              </HoverCard>
                           ))
                         : "검색 결과가 없습니다."}
-                </BottomWrap>
+                </Wrap>
             </BottomCard>
         </Container>
     );

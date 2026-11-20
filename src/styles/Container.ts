@@ -28,3 +28,10 @@ export const Title = styled.div`
         color: #a0a0a0;
     }
 `;
+
+
+export const Wrap = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+`;
