@@ -127,7 +127,7 @@ function Coin() {
                                 }}
                                 style={{
                                     backgroundColor:
-                                        selectedCoin?.rank === coin.rank ? "#dce9ff" : "#f2f2f2",
+                                        selectedCoin?.rank === coin.rank ? "#dce9ff" : "#f4f6f8",
                                 }}>
                                 <CoinInfo>
                                     <p>{coin.name}</p>

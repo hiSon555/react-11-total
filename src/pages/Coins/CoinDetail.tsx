@@ -10,6 +10,7 @@ const RightContainer = styled.div`
     border-radius: 18px;
     margin: 0;
     flex: 1;
+    overflow-x: hidden;
 
     hr {
         border: solid 1px #f4f6f8;
@@ -45,10 +46,10 @@ const CoinInt = styled.span`
 
 const CoinCardWrapper = styled.div`
     display: flex;
+    flex-wrap: wrap;
     margin-top: 16px;
     gap: 20px;
-
-`
+`;
 
 const CoinCard = styled.div`
     background-color: #f4f6f8;
