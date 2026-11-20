@@ -2,7 +2,7 @@ import GlobalStyle from "./styles/GlobalStyle.ts";
 import Home from "./pages/Home.tsx";
 import Coin from "./pages/Coins/Coin.tsx";
 import Todo from "./pages/Todo.tsx";
-import Movie from "./pages/Movie.tsx";
+import Movie from "./pages/movies/Movie.tsx";
 import Book from "./pages/Book.tsx";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/Header.tsx";
